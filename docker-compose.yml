@@ -1,0 +1,66 @@
+version: '2.2'
+
+services:
+  app:
+    image: apache-php7-xdebug:slim
+    container_name: laravel-app
+    restart: always
+    ports:
+      - "8806:80"
+    volumes:
+      - .:/var/www/html
+    mem_limit: 1024m
+    networks:
+      - default
+    cap_add:
+      - SYS_PTRACE
+    depends_on:
+      - mysql-dev
+  mysql-dev:
+    restart: always
+    image: mariadb:10.3
+    container_name: mysql-dev
+    ports:
+      - "3809:3306"
+    networks:
+      - default
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=local
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=root
+      - PMA_ARBITRARY=1
+      - PMA_HOST=mysql
+      - PMA_PORT=3306
+      - PMA_USER=root
+      - PMA_PASSWORD=root
+
+  phpmhyadmin:
+    restart: always
+    image: phpmyadmin/phpmyadmin:edge-4.8
+    container_name: phpmyadmin
+    ports:
+      - "8805:80"
+    networks:
+      - default
+    depends_on:
+      - mysql-dev
+    environment:
+      PMA_ARBITRARY: 1
+      PMA_HOST: mysql-dev
+      PMA_PORT: 3306
+      PMA_USER: root
+      PMA_PASSWORD: root
+
+volumes:
+  mysql:
+    driver: local
+  redis:
+    driver: local
+networks:
+  default:
+    driver: bridge
+    name: laravel-101-network
+
+
+

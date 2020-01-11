@@ -2,7 +2,7 @@ version: '2.2'
 
 services:
   app:
-    image: apache-php7-xdebug:slim
+    image: maxca789/apache-php7-xdebug:slim
     container_name: laravel-app
     restart: always
     ports:

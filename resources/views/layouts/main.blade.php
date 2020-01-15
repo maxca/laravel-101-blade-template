@@ -16,6 +16,7 @@
     href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i,600,600i,700%7cSource+Sans+Pro:300,300i,400,400i,600,600i,700">
     <link rel="stylesheet" href="{{asset('assets/css/libraries.css')}}" />
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}" />
+    <link rel="stylesheet" href="{{mix('css/app.css')}}" />
 </head>
 
 <body>
@@ -39,6 +40,7 @@
   <script src="{{asset('assets/js/jquery-3.3.1.min.js')}}"></script>
   <script src="{{asset('assets/js/plugins.js')}}"></script>
   <script src="{{asset('assets/js/main.js')}}"></script>
+  <script src="{{mix('js/app.js')}}"></script>
   @stack('scripts')
 
 
